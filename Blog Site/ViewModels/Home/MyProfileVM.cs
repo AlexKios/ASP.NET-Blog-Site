@@ -1,4 +1,4 @@
-﻿]namespace Blog_Site.ViewModels.Home
+﻿namespace Blog_Site.ViewModels.Home
 {
     public class MyProfileVM
     {
