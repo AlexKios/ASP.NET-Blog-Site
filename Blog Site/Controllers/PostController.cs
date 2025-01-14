@@ -1,11 +1,13 @@
 ﻿using Blog_Site.Entities;
 using Blog_Site.Extentions;
+using Blog_Site.Filters;
 using Blog_Site.Repositories;
 using Blog_Site.ViewModels.Post;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog_Site.Controllers
 {
+    [AuthenticationFilter]
     public class PostController: Controller
     {
 
