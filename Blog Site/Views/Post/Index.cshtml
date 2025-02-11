@@ -12,13 +12,13 @@
 <div class="grid">
     <div class="row">
         <div class="col-2">
-            <a href="/Posts/Create">NEW</a>
+            <a href="/Post/Create">NEW</a>
         </div>
     </div>
 
     @foreach (var item in Model.Posts)
     {
-        <form action="/Posts/Index" method="post">
+        <form action="/Post/Index" method="post">
             @Html.HiddenFor(m => m.Id)
         <div class="row">
             <div class="col-3"><hr></div>
@@ -59,8 +59,8 @@
         @if (loggedUser.IsAdmin || item.Owner.Id == loggedUser.Id)
         {
             <div class="col-2">
-                <a href="/Posts/Edit?id=@item.Id">edit</a>
-                <a href="/Posts/Delete?id=@item.Id"
+                <a href="/Post/Edit?id=@item.Id">edit</a>
+                <a href="/Post/Delete?id=@item.Id"
                    onclick="return confirm('Delete item?')">delete</a>
             </div>
         }

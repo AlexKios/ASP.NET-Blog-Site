@@ -10,8 +10,8 @@ namespace Blog_Site.Entities
         public int Likes { get; set; }
         public DateTime CreatedAt { get; set; }
         [ForeignKey(nameof(OwnerId))]
-        public User Owner {  get; set; }
+        public virtual User Owner {  get; set; }
         [ForeignKey(nameof(PostId))]
-        public Post MainPost { get; set; }
+        public virtual Post MainPost { get; set; }
     }
 }
