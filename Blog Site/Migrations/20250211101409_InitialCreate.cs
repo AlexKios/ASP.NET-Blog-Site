@@ -73,13 +73,13 @@ namespace Blog_Site.Migrations
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Comments_Users_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.InsertData(

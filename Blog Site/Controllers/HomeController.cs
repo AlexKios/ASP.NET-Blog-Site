@@ -75,6 +75,52 @@ namespace Blog_Site.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public IActionResult Register(string url)
+        {
+            RegisterVM vm = new RegisterVM();
+            vm.Url = url;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterVM model)
+        {
+            if (ModelState.IsValid)
+                return View(model);
+
+            UserRepository repo = new UserRepository();
+            foreach (var user in repo.GetAll())
+            {
+                if (user.Username==model.Username)
+                {
+                    ModelState.AddModelError("authFailed", "Username taken");
+                    return View(model);
+                }
+            }
+            User loggedUser= new User();
+            loggedUser.Username = model.Username;
+            loggedUser.Password = model.Password;
+            loggedUser.FirstName = model.FirstName;
+            loggedUser.LastName = model.LastName;
+
+            repo.Save(loggedUser);
+
+
+            if (loggedUser == null)
+            {
+                ModelState.AddModelError("authFailed", "Authentication failed!");
+                return View(model);
+            }
+
+            this.HttpContext.Session.SetObject("loggedUser", loggedUser);
+
+            if (!string.IsNullOrEmpty(model.Url))
+                return new RedirectResult(model.Url);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Logout()
         {
             this.HttpContext.Session.Remove("loggedUser");

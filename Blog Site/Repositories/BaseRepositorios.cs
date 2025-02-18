@@ -41,6 +41,10 @@ namespace Blog_Site.Repositories
                     .Take(itemsPerPage)
                     .ToList();
         }
+        public List<T> GetAll()
+        {
+            return Items.ToList();
+        }
 
         public T FirstOrDefault(Expression<Func<T, bool>> filter)
         {
